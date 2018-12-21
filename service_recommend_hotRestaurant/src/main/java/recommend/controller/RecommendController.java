@@ -22,11 +22,11 @@ public class RecommendController {
 
 
     @RequestMapping(value = "/hotRestaurantList", method = RequestMethod.GET)
-//    @ResponseBody
+    @ResponseBody
     public Object restaurantList(HttpServletRequest request) throws Exception {
 
 
-//        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<>();
 
 //        List<String> restaurantList = new ArrayList<>();
         List<String> restaurantList = SparkService.recommendHotRestaurant();
@@ -34,9 +34,9 @@ public class RecommendController {
 //            restaurantList.add("restaurant" + i);
 //        }
 
-//        map.put("list", restaurantList);
+        map.put("restaurantList", restaurantList);
 
-        return restaurantList;
+        return map;
     }
 
 
