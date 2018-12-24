@@ -3,24 +3,25 @@
 <mapper namespace="com.example.restaurant_details.mapper.RestaurantMapper" >
     <resultMap id="BaseResultMap" type="com.example.restaurant_details.entity.RestaurantEntity" >
         <id column="id" property="id" jdbcType="BIGINT" />
-        <result column="userName" property="userName" jdbcType="VARCHAR" />
-        <result column="passWord" property="passWord" jdbcType="VARCHAR" />
+        <result column="business_id" property="business_id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="stars" property="stars" jdbcType="DOUBLE" />
     </resultMap>
     
     <sql id="Base_Column_List" >
-        id, userName, passWord
+        id, business_id, name, stars
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap"  >
        SELECT
     <include refid="Base_Column_List" />
-	   FROM users
+	   FROM restaurantinfo
     </select>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap" >
         SELECT
        <include refid="Base_Column_List" />
-	   FROM users
+	   FROM restaurantinfo
 	   WHERE id = #{id}
     </select>
 
