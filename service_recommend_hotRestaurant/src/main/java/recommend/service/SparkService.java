@@ -29,7 +29,7 @@ public class SparkService {
     public static Dataset<Row> userDataSet;
     public static Dataset<Row> businessDataSet;
 
-//    public static String user_path = "/Users/dreamhome/Desktop/learn/云计算/yelp_dataset的副本/yelp_academic_dataset_user.json";
+//    public templates String user_path = "/Users/dreamhome/Desktop/learn/云计算/yelp_dataset的副本/yelp_academic_dataset_user.json";
     public static String business_path = "/Users/dreamhome/Desktop/learn/云计算/yelp_dataset的副本/yelp_academic_dataset_business.json";
     static{
         spark = SparkSession.builder().appName("test").master("local[*]").getOrCreate();
