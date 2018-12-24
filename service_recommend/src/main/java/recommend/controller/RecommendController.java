@@ -34,7 +34,7 @@ public class RecommendController {
         //fHr-AD4PYfHQs9-z9bcU8w 15914
         //fX8V9Qi_MErlmtiuEZxHkA 42854
         List<String> restaurantList = SparkService.recommendRestaurantForUser(user_id);
-        map.put("hotRestaurantList",restaurantList);
+        map.put("restaurantList",restaurantList);
 
         return map;
     }

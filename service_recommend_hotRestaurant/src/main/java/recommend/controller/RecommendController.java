@@ -22,7 +22,7 @@ public class RecommendController {
 
 
     @RequestMapping(value = "/hotRestaurantList", method = RequestMethod.GET)
-    @ResponseBody
+//    @ResponseBody
     public Object restaurantList(HttpServletRequest request) throws Exception {
 
 
