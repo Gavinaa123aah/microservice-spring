@@ -1,0 +1,30 @@
+null{id:178569,business_id:yYgeUm-8qXhZiqTrVyQrKg,name:Plaka Taverna,stars:4.0}
+{id:160563,business_id:GIhzzb9tjqLCYdNP_k3-dQ,name:Desert Botanical Garden,stars:4.5}
+{id:36998,business_id:WBxR9IC6E9-4szNzq7_Y3Q,name:Lemongrass Thai Cafe,stars:3.5}
+{id:39730,business_id:GBuB1uV9NRrtaLxZoVhi7w,name:Donut Parlor,stars:4.5}
+{id:176262,business_id:LtNgP4FqXp5nMFOHErK8cw,name:Yen Sushi & Sake Bar,stars:4.0}
+{id:78857,business_id:NXN_rVXsvJJVgm47k99Gtw,name:Ocean Trail,stars:4.5}
+{id:168748,business_id:nUfeYJ_YEaDzggPKnYry3g,name:Rancho de Tia Rosa,stars:3.0}
+{id:66058,business_id:bXbCGFk3ZjLcTdQQB-xPyQ,name:Luciano's Ristorante Italiano,stars:4.0}
+{id:114197,business_id:rmP7AzV3SAeRWUzbNuqQ5A,name:131 MAIN Restaurant,stars:4.0}
+{id:47377,business_id:F-QY0xyNi9z1p0wjZvnk3g,name:Discount Tire,stars:4.0}
+null{id:114766,business_id:poYsvuOmVDqF4dTnjJ780A,name:Tiabi Coffee & Waffle,stars:4.5}
+{id:62000,business_id:WSirMxtVe893j3edfPr_vQ,name:Townsley Portraits,stars:4.5}
+{id:15859,business_id:lTixk1IT-D4hoMZ6LgoyHQ,name:The Barrymore,stars:4.0}
+{id:117320,business_id:9vkVY5puIHRfKMgJB4LBnw,name:BJ's Restaurant & Brewhouse,stars:3.5}
+{id:17247,business_id:773ovbZW7HvfaNy5laUznQ,name:Jia Asian Fusion & Sushi Bar,stars:4.5}
+{id:182739,business_id:2xlQ1OA8iU2V460CgS37-w,name:Starving Artist,stars:3.5}
+{id:173874,business_id:lKOvx_aAXiXQGooZ-4bq9Q,name:Pin Kaow Thai Restaurant,stars:3.5}
+{id:138329,business_id:a9k9MQrr5KFyMD7_Lnwrhw,name:USA Auto Service,stars:4.5}
+{id:173116,business_id:grlL6zmHBOer9rPycsRhBA,name:Bocho Sushi,stars:4.5}
+{id:103315,business_id:SX7-vTahSnoVeJQ6N86PMw,name:The Joya Spa,stars:4.0}
+null{id:85003,business_id:lH0Ph4DiYSqj9UJBXAq8hQ,name:Just-In Time Moving and Delivery,stars:5.0}
+{id:72764,business_id:IVnGPHdTyu_GbLo9mXj98w,name:Ramen Tatsu,stars:4.5}
+{id:63551,business_id:XRXj8BhR7fDP-YWFTEZn0A,name:LV Top Shelf,stars:5.0}
+{id:136182,business_id:RSOinkOUpxm0mGw1IWr4Xw,name:Katsuya,stars:4.5}
+{id:64460,business_id:wSojc-y-d7MWiGWdy8deCg,name:Barque Smokehouse,stars:4.0}
+{id:95471,business_id:x-OzusjjKayXXFII0bmnOw,name:Sushi Palace,stars:4.0}
+{id:16228,business_id:b1WGIdd_oSwGYZtC769Shw,name:Rachel's Kitchen,stars:4.0}
+{id:17933,business_id:JFNv5sKeKAf1ZVPnfbzpXw,name:East West Pizzeria,stars:4.0}
+{id:55478,business_id:cyzOijFJ82cae6qH6L8vuw,name:Arawan Thai Bistro and Dessert,stars:4.5}
+{id:179770,business_id:1DP5vHxJzCDbgawv0WC3yA,name:Rose. Rabbit. Lie.,stars:4.0}
