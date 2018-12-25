@@ -5,8 +5,9 @@ import java.io.Serializable;
 public class RestaurantEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
-    private String userName;
-    private String passWord;
+    private String business_id;
+    private String name;
+    private String stars;
 
     public RestaurantEntity() {
         super();
@@ -14,8 +15,13 @@ public class RestaurantEntity implements Serializable {
 
     public RestaurantEntity(String userName, String passWord) {
         super();
-        this.passWord = passWord;
-        this.userName = userName;
+
+        this.name = passWord;
+        this.stars = userName;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Long getId() {
@@ -26,26 +32,37 @@ public class RestaurantEntity implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getBusiness_id() {
+        return business_id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setBusiness_id(String business_id) {
+        this.business_id = business_id;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getName() {
+        return name;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStars() {
+        return stars;
+    }
+
+    public void setStars(String stars) {
+        this.stars = stars;
     }
 
     @Override
     public String toString() {
-        return "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' ;
+        return "RestaurantEntity{" +
+                "id=" + id +
+                ", business_id='" + business_id + '\'' +
+                ", name='" + name + '\'' +
+                ", stars='" + stars + '\'' +
+                '}';
     }
 }
