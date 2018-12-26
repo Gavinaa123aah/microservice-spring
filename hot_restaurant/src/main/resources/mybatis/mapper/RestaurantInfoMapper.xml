@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.hot_restaurant.mapper.RestaurantInfoMapper" >
+    <resultMap id="BaseResultMap" type="com.example.hot_restaurant.entity.RestaurantInfo" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="business_id" property="business_id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="stars" property="stars" jdbcType="DOUBLE" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, business_id, name, stars
+    </sql>
+    <select id="getHotRestaurant" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM restaurantinfo
+        where
+        stars>4
+    </select>
+
+    <select id="recommend_restaurant" parameterType="int" resultMap="BaseResultMap"  >
+       SELECT
+    <include refid="Base_Column_List" />
+	   FROM restaurantinfo  WHERE id in
+        (SELECT business_id FROM reviewinfo WHERE user_id = #{id})
+    </select>
+
+
+</mapper>
