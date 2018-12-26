@@ -72,21 +72,10 @@
 <!-- gallery -->
 	<div class="gallery">
 	<div class="container" id="content">
-		<h2 class="tittle-w3">Restaurant Select Results</h2>
-		<div class="gallery-grids" id="res_content">
-			<!--<div id="div1" class="col-md-4 gallery-grid wow fadeInUp animated" data-wow-delay=".5s">-->
-				<!--<div class="grid">-->
-					<!--<figure class="effect-apollo">-->
-						<!--<a class="example-image-link" href="images/g1.jpg" data-lightbox="example-set" data-title="">-->
-							<!--<img src="images/g1.jpg" alt="" />-->
-							<!--<figcaption>-->
-								<!--<h3>Spicy</h3>-->
-								<!--<p>LGD <br>Best Recipes</p>-->
-							<!--</figcaption>-->
-						<!--</a>-->
-					<!--</figure>-->
-				<!--</div>-->
-			<!--</div>-->
+		<h2 class="tittle-w3">Restaurant Detail</h2>
+		<div class="gallery-grids" id="res_content" style="margin-left: 100px">
+			<div id="div1" class="col-md-4 gallery-grid wow fadeInUp animated" data-wow-delay=".5s">
+
 			<!--<div id="div2" class="col-md-4 gallery-grid wow fadeInUp animated" data-wow-delay=".5s">-->
 				<!--<div class="grid">-->
 					<!--<figure class="effect-apollo">-->
@@ -195,6 +184,7 @@
 		</div>
 	</div>
 	</div>
+	</div>
 <!-- //gallery -->
 <!-- Footer -->
 			<div class="copyright-wthree">
@@ -205,26 +195,7 @@
 <!-- //smooth scrolling -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <!-- //gallery -->
-<!--<script src="js/lightbox-plus-jquery.min.js"> </script>-->
-<!--<div id="lightboxOverlay" class="lightboxOverlay" style="width: 1440px; height: 1274px; display: block;"></div>-->
-<!--<div id="lightbox" class="lightbox" style="display: block; top: 325px; left: 0px;">-->
-	<!--<div class="lb-outerContainer" style="width: 650px; height: 400px;">-->
-		<!--<div class="lb-container">-->
-			<!--<div class="lb-nav" style="display: block;">-->
-				<!--<a class="lb-prev" href="" style="display: none;"></a>-->
-				<!--<a class="lb-next" href="" style="display: block;"></a>-->
-			<!--</div>-->
-			<!--<div class="lb-loader" style="display: none; opacity: 0;">-->
-				<!--<a class="lb-cancel"></a>-->
-			<!--</div></div></div>-->
-	<!--<div class="lb-dataContainer" style="display: block; width: 650px;">-->
-		<!--<div class="lb-data">-->
-			<!--<div class="lb-details">-->
-				<!--<span class="lb-caption" style="display: none;"></span>-->
-				<!--<span class="lb-number"></span>-->
-			<!--</div>-->
-			<!--<div class="lb-closeContainer"><a class="lb-close"></a>-->
-			<!--</div></div></div></div>-->
+<script src="js/lightbox-plus-jquery.min.js"> </script>
 		<!-- //gallery -->
 <!-- Dropdown-Menu-JavaScript -->
 			<script>
@@ -247,7 +218,7 @@
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){
+		$(".scroll").click(function(event){		
 			event.preventDefault();
 			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 		});
@@ -287,9 +258,9 @@
 					</script>
 					<!-- script-for-menu -->
 <script type="text/javascript">
-	var username
 	$(document).ready(function(){
         // function parseUrl(url){
+
 		var url = decodeURI(location.search)
         var texts=''
 		// document.getElementById("res_content").innerHTML
@@ -301,61 +272,69 @@
                 "                <li><i class=\"fa fa-user-secret\" aria-hidden=\"true\"></i><a href=>"+username+"</a></li>\n" +
                 "            </ul>"
             $("#right_div").html(text)
-            var res = url.split("?")[1].split('list')[1].split('=')[1]
-			// alert(res)
-            var res_list = res.split(",")
-            for(var i = 9;i >= 1;i--){
-                text = "<div class=\"col-md-4 gallery-grid wow fadeInUp animated\" onclick=\"showdetail()\" data-wow-delay=\".5s\">\n" +
-                    "\t\t\t\t<div class=\"grid\" >\n" +
-                    "\t\t\t\t\t<figure class=\"effect-apollo\">\n" +
-                    "\t\t\t\t\t\t<a class=\"example-image-link\" data-lightbox=\"example-set\" data-title=\"\">\n" +
-                    "\t\t\t\t\t\t\t<img src=\"images/g"+i+".jpg\" alt=\"\" />\n" +
+            // var res = url.split("?")[1].split('list')[1].split('=')[1]
+            var name = url.split("?")[1].split('&')[1].split('=')[1]
+            var city = url.split("?")[1].split('&')[2].split('=')[1]
+            var address = url.split("?")[1].split('&')[3].split('=')[1]
+            var stars = url.split("?")[1].split('&')[4].split('=')[1]
+			var imgurl = url.split("?")[1].split('&')[5].split('=')[1]
+                text = "<div class=\"grid\" style=\"float: left\">\n" +
+                    "\t\t\t\t\t<figure class=\"effect-apollo\" style='width: 400px'>\n" +
+                    "\t\t\t\t\t\t<a class=\"example-image-link\" href=\"images/g"+imgurl+".jpg\" data-lightbox=\"example-set\" data-title=\"\">\n" +
+                    "\t\t\t\t\t\t\t<img src=\"images/g"+imgurl+".jpg\" alt=\"\" />\n" +
                     "\t\t\t\t\t\t\t<figcaption>\n" +
-                    "\t\t\t\t\t\t\t\t<h3>"+res_list[i-1]+"</h3>\n" +
-                    // "\t\t\t\t\t\t\t\t<h3>Address:"+res_list[i-1].split(":")[1]+"</h3>\n" +
-                    "\t\t\t\t\t\t\t\t<p>LGD <br>Best Recipes</p>\n" +
+                    "\t\t\t\t\t\t\t\t<h3>"+name+"</h3>\n" +
+                    "\t\t\t\t\t\t\t\t<!--<p>LGD <br>Best Recipes</p>-->\n" +
                     "\t\t\t\t\t\t\t</figcaption>\n" +
                     "\t\t\t\t\t\t</a>\n" +
                     "\t\t\t\t\t</figure>\n" +
                     "\t\t\t\t</div>\n" +
-                    "\t\t\t</div>\n"
+                    "\n" +
+                    "\t\t\t</div>\n" +
+                    "\t\t\t<div style=\"float: left;margin-top: 15px;margin-left: 60px\">\n" +
+                    "\t\t\t\t<h2>name:"+name+"</h2>\n" +
+                    "\t\t\t\t<h2 style=\"margin-top: 10px\">city:"+city+"</h2>\n" +
+                    "\t\t\t\t<h2 style=\"margin-top: 10px\">address:"+address+"</h2>\n" +
+                    "\t\t\t\t<h2 style=\"margin-top: 10px\">stars:"+stars+"</h2>\n" +
+                    "\t\t\t\t<input style=\"margin-top: 10px\" />\n" +
+                    "\t\t\t</div>"
                 texts=text+texts
-            }
             $("#res_content").html(texts)
         }else{
-            var res = url.split("?")[1].split("=")[1]
-            var res_list = res.split(",")
-            for(var i = 9;i >= 1;i--){
-                text = "<div class=\"col-md-4 gallery-grid wow fadeInUp animated\" onclick=\"showdetail()\" data-wow-delay=\".5s\">\n" +
-                    "\t\t\t\t<div class=\"grid\">\n" +
-                    "\t\t\t\t\t<figure class=\"effect-apollo\">\n" +
-                    "\t\t\t\t\t\t<a class=\"example-image-link\" data-lightbox=\"example-set\" data-title=\"\">\n" +
-                    "\t\t\t\t\t\t\t<img src=\"images/g"+i+".jpg\" alt=\"\" />\n" +
-                    "\t\t\t\t\t\t\t<figcaption>\n" +
-                    "\t\t\t\t\t\t\t\t<h3>"+res_list[i-1]+"</h3>\n" +
-                    // "\t\t\t\t\t\t\t\t<h3>Address:"+res_list[i-1].split(":")[1]+"</h3>\n" +
-                    "\t\t\t\t\t\t\t\t<p>LGD <br>Best Recipes</p>\n" +
-                    "\t\t\t\t\t\t\t</figcaption>\n" +
-                    "\t\t\t\t\t\t</a>\n" +
-                    "\t\t\t\t\t</figure>\n" +
-                    "\t\t\t\t</div>\n" +
-                    "\t\t\t</div>\n"
-                texts=text+texts
-            }
+
+            var name = url.split("?")[1].split('&')[0].split('=')[1]
+            var city = url.split("?")[1].split('&')[1].split('=')[1]
+            var address = url.split("?")[1].split('&')[2].split('=')[1]
+            var stars = url.split("?")[1].split('&')[3].split('=')[1]
+            var imgurl = url.split("?")[1].split('&')[4].split('=')[1]
+
+            text = "<div class=\"grid\" style=\"float: left\">\n" +
+                "\t\t\t\t\t<figure class=\"effect-apollo\" style='width: 400px'>\n" +
+                "\t\t\t\t\t\t<a class=\"example-image-link\" href=\"images/g"+imgurl+".jpg\" data-lightbox=\"example-set\" data-title=\"\">\n" +
+                "\t\t\t\t\t\t\t<img src=\"images/g"+imgurl+".jpg\" alt=\"\" />\n" +
+                "\t\t\t\t\t\t\t<figcaption>\n" +
+                "\t\t\t\t\t\t\t\t<h3>"+name+"</h3>\n" +
+                "\t\t\t\t\t\t\t\t<!--<p>LGD <br>Best Recipes</p>-->\n" +
+                "\t\t\t\t\t\t\t</figcaption>\n" +
+                "\t\t\t\t\t\t</a>\n" +
+                "\t\t\t\t\t</figure>\n" +
+                "\t\t\t\t</div>\n" +
+                "\n" +
+                "\t\t\t</div>\n" +
+                "\t\t\t<div style=\"float: left;margin-top: 20px;margin-left: 60px\">\n" +
+                "\t\t\t\t<h2>name:"+name+"</h2>\n" +
+                "\t\t\t\t<h2 style=\"margin-top: 10px\">city:"+city+"</h2>\n" +
+                "\t\t\t\t<h2 style=\"margin-top: 10px\">address:"+address+"</h2>\n" +
+                "\t\t\t\t<h2 style=\"margin-top: 10px\">stars:"+stars+"</h2>\n" +
+                "\t\t\t\t<input style=\"margin-top: 10px\" />\n" +
+                "\t\t\t</div>"
+            texts=text+texts
             $("#res_content").html(texts)
 		}
 		// alert(res_list)
             // return obj
         // }
 	})
-	function showdetail() {
-	    if(username=='')
-			window.location.href='/restaurant_detail.html?res_name=AAA&city=BBB&address=CCC&stars=DDD&imgurl=1'
-		else{
-            window.location.href='/restaurant_detail.html?username=test&res_name=AAA&city=BBB&address=CCC&stars=DDD&imgurl=2'
-
-        }
-    }
 </script>
 </body>
 </html>

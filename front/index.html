@@ -28,6 +28,22 @@
         background: #26d797;
         border: 1px solid #26d797;
     }
+    #recommend{
+        outline: none;
+        width: 206px;
+        height: 34px;
+        background: #fd6239;
+        display: inline-block;
+        color: #fff;
+        font-size: 14px;
+        border: 1px solid #fd6239;
+        text-transform: uppercase;
+        margin-top: 31px;
+    }
+    #recommend:hover{
+        background: #26d797;
+        border: 1px solid #26d797;
+    }
 </style>
 </head>
 <body>
@@ -37,7 +53,7 @@
         <div class="social-bnr-agileits">
             <a style="font-size: 1.05em;color: white;font-weight: bold;display: block;margin-top: 0.5em;">Welcome to our System!Have a good day!</a>
         </div>
-        <div class="contact-bnr-w3-agile">
+        <div class="contact-bnr-w3-agile" id="right_div">
             <ul>
                 <li><i class="fa fa-sign-in" aria-hidden="true"></i><a href="/signin.html">Sign in</a></li>
                 <li><i class="fa fa-signing" aria-hidden="true"></i><a href="/signup.html">Sign up</a></li>
@@ -78,25 +94,20 @@
     </header>
     <!-- //header -->
     <!-- banner-text -->
-    <div class="banner-text">
+    <div class="banner-text" >
         <h2>SEARCH RESTAURANT FOR YOU AND YOUR TASTES!</h2>
-        <div class="book-form">
+        <div class="book-form" style="height:240px;">
             <p>Type condition you want to filter.</p>
             <form id="form">
                 <div class="col-md-3 form-date-w3-agileits" style="width:680px;float: left">
                     <label><i class="fa fa-info" aria-hidden="true"></i>Condition :</label>
                     <input  id="businesspicker1"  name="Text" type="text" value=""  required="">
                 </div>
-                <!--<div class="col-md-3 form-date-w3-agileits">-->
-                    <!--<label><i class="fa fa-info" aria-hidden="true"></i> Condition2 :</label>-->
-                    <!--<input  id="businesspicker2" style="width:auto" name="Text" type="text" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}" required="">-->
-                <!--</div>-->
-                <!--<div class="col-md-3 form-date-w3-agileits">-->
-                    <!--<label><i class="fa fa-info" aria-hidden="true"></i> Condition3 :</label>-->
-                    <!--<input  id="businesspicker3" style="width:auto" name="Text" type="text" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}" required="">-->
-                <!--</div>-->
                 <div class="col-md-3 form-left-agileits-submit" style="float: right">
                     <input id="search" onclick="dosearch()" type="button" value="Search" >
+                </div>
+                <div class="col-md-3 form-left-agileits-submit" style="float: right">
+                    <input id="recommend" onclick="dorecommend()" type="button" value="Recommend" >
                 </div>
             </form>
         </div>
@@ -149,24 +160,83 @@
 </div>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function () {
+        var url = decodeURI(location.search)
+        var username = "";
+        if(url.indexOf("username")!=-1){
+            username=url.split("=")[1].split('&')[0]
+            text = "<ul>\n" +
+                "                <li><i class=\"fa fa-user-secret\" aria-hidden=\"true\"></i><a href=>"+username+"</a></li>\n" +
+                "            </ul>"
+            $("#right_div").html(text)
+        }
+
+    })
     function dosearch() {
         var search_content = $("#businesspicker1").val()
-        $.ajax({
-            dataType: "json",
-            type: "GET",
-            url: "http://localhost:9006/recommend/hotRestaurantList",
-            async:true,
-            header:"Access-Control-Allow-Origin：*",
-            success: function (data) {
-                if (data) {//根据返回值进行跳转
-                    result = data.restaurantList
-                    window.location.href = '/restaurant_info.html?list='+result;
+        if(search_content==''){
+            $.ajax({
+                dataType: "json",
+                type: "GET",
+                url: "http://localhost:9006/recommend/hotRestaurantList",
+                async:true,
+                header:"Access-Control-Allow-Origin：*",
+                success: function (data) {
+                    if (data) {//根据返回值进行跳转
+                        result = data.restaurantList
+                        window.location.href = '/restaurant_info.html?list='+result;
+                    }
+                    console.log(data.restaurantList);
+                }, error: function (data) {
+                    alert(系统错误);
                 }
-                console.log(data.restaurantList);
-            }, error: function (data) {
-                alert(系统错误);
-            }
-        });
+            });
+        }else{
+
+        }
+        // console.log("123123");
+    }
+    function dorecommend() {
+        // var search_content = $("#businesspicker1").val()
+        var username = "";
+        var url = decodeURI(location.search)
+
+        if(url.indexOf("username")==-1){
+            $.ajax({
+                dataType: "json",
+                type: "GET",
+                url: "http://localhost:9006/recommend/hotRestaurantList",
+                async:true,
+                header:"Access-Control-Allow-Origin：*",
+                success: function (data) {
+                    if (data) {//根据返回值进行跳转
+                        result = data.restaurantList
+                        window.location.href = '/restaurant_info.html?list='+result;
+                    }
+                    console.log(data.restaurantList);
+                }, error: function (data) {
+                    alert(系统错误);
+                }
+            });
+        }else{
+            var user_id = url.split('?')[1].split('&')[1].split('=')[1]
+            $.ajax({
+                dataType: "json",
+                type: "GET",
+                url: "http://localhost:9004/recommend/userRestaurantList?user_id="+user_id,
+                async:true,
+                header:"Access-Control-Allow-Origin：*",
+                success: function (data) {
+                    if (data) {//根据返回值进行跳转
+                        result = data.restaurantList
+                        window.location.href = '/restaurant_info.html?username='+url.split('?')[1].split('&')[0].split('=')[1]
+                            +'&list='+result;
+                    }
+                }, error: function (data) {
+                    alert('False');
+                }
+            });
+        }
         // console.log("123123");
     }
 </script>

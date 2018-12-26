@@ -12,6 +12,22 @@
 <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet">
 <style type="text/css">
+    #signup {
+        outline: none;
+        width: 206px;
+        height: 34px;
+        background: #fd6239;
+        display: inline-block;
+        color: #fff;
+        font-size: 14px;
+        border: 1px solid #fd6239;
+        text-transform: uppercase;
+        margin-top: 31px;
+    }
+    #signup:hover {
+        background: #26d797;
+        border: 1px solid #26d797;
+    }
 </style>
 </head>
 <body>
@@ -66,7 +82,7 @@
         <!--<h2>Sign in!</h2>-->
         <div class="book-form" style="width: 400px;height: 450px;margin-top: 20px;text-align: center">
             <p>Please Sign up.</p>
-            <form action="#" method="post">
+            <form>
 
                 <div class="col-md-3 form-date-w3-agileits" style="float: left;width: 350px;height: 40px;margin-top: 20px;">
 
@@ -90,7 +106,7 @@
 
                 </div>
                 <div class="col-md-3 form-left-agileits-submit" style="width: 200px;margin-left: 60px">
-                    <input type="submit" value="Sign up">
+                    <input id="signup" onclick="dosignup()" type="button" value="Sign up">
                 </div>
             </form>
         </div>
@@ -141,5 +157,37 @@
     </div>
     <!-- //gallery -->
 </div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+    function dosignup() {
+        var username = $("#username").val()
+        var password1 = $("#password1").val()
+        var password2 = $("#password2").val()
+        if(password1!=password2){
+            alert("password not same!")
+            window.location.href="/signup.html"
+        }else{
+            $.ajax({
+                dataType: "text",
+                type: "GET",
+                url: "http://localhost:8763/register?name=\""+username+'\"'+"&password="+password1,
+                async:true,
+                header:"Access-Control-Allow-Origin：*",
+                success: function (data) {
+                    if (data=='True') {//根据返回值进行跳转
+                        window.location.href = '/signin.html';
+                    }
+                    // console.log(data.restaurantList);
+                    else {
+                        alert("User is already used,Change one")
+                        window.location.href = '/signup.html';
+                    }
+                }, error: function (data) {
+                    alert("");
+                }
+            });
+        }
+    }
+</script>
 </body>
 </html>

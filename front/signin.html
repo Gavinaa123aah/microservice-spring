@@ -12,6 +12,22 @@
 <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet">
 <style type="text/css">
+    #signin {
+        outline: none;
+        width: 206px;
+        height: 34px;
+        background: #fd6239;
+        display: inline-block;
+        color: #fff;
+        font-size: 14px;
+        border: 1px solid #fd6239;
+        text-transform: uppercase;
+        margin-top: 31px;
+    }
+    #signin:hover {
+        background: #26d797;
+        border: 1px solid #26d797;
+    }
 </style>
 </head>
 <body>
@@ -66,7 +82,7 @@
         <!--<h2>Sign in!</h2>-->
         <div class="book-form" style="width: 400px;height: 350px;margin-top: 20px;text-align: center">
             <p>Please Sign in.</p>
-            <form action="#" method="post">
+            <form>
 
                 <div class="col-md-3 form-date-w3-agileits" style="float: left;width: 350px;height: 40px;margin-top: 20px;">
 
@@ -79,12 +95,12 @@
 
                     <label style="display: inline;line-height: 30px;"><i class="fa fa-apple" aria-hidden="true"></i>password :</label>
 
-                    <input  id="password" style="width:150px;height:35px;float: left;margin-left: 20px;background-color:#000000;color: white ;outline: none;padding: 3px 10px;" name="Text" type="password" value="" onfocus="this.value = '';"  required="">
+                    <input  id="password" style="width:150px;height:35px;float: left;margin-left: 20px;background-color:#000000;color: white ;outline: none;padding: 3px 10px;" name="password" type="password" value="" onfocus="this.value = '';"  required="">
 
                 </div>
 
-                <div class="col-md-3 form-left-agileits-submit" style="width: 200px;margin-left: 60px">
-                    <input type="submit" value="Sign in">
+                <div class="col-md-3 form-left-agileits-submit" style="width: 200px;margin-left: 50px">
+                    <input id="signin" onclick="dosignin()" type="button"  value="Sign in">
                 </div>
             </form>
         </div>
@@ -135,5 +151,31 @@
     </div>
     <!-- //gallery -->
 </div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+    function dosignin(){
+        var username = $("#username").val()
+        var password = $("#password").val()
+        url = "http://localhost:8763/login?name=\""+username+'\"'+"&password="+password
+        // http://localhost:8763/login?name=%22Nichole%22&password=1
+        alert(url)
+        $.ajax({
+            dataType: "text",
+            type: "GET",
+            url: "http://localhost:8763/login?name=\""+username+'\"'+"&password="+password,
+            async:true,
+            header:"Access-Control-Allow-Origin：*",
+            success: function (data) {
+                if (data.split(',')[0]=='True') {//根据返回值进行跳转
+                    window.location.href = '/index.html?username='+username+'&user_id='+data.split(',')[1];
+                }
+            }, error: function (data) {
+                alert(data.toString())
+                alert('Please enter again');
+                window.location.href = '/signin.html'
+            }
+        });
+    }
+</script>
 </body>
 </html>
