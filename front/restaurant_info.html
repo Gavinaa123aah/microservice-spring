@@ -325,8 +325,8 @@
         }else{
             var res = url.split("?")[1].split("=")[1]
             var res_list = res.split(",")
-            for(var i = 9;i >= 1;i--){
-                text = "<div class=\"col-md-4 gallery-grid wow fadeInUp animated\" onclick=\"showdetail()\" data-wow-delay=\".5s\">\n" +
+            for(var i = res_list.length;i >= 1;i--){
+                text = "<div class=\"col-md-4 gallery-grid wow fadeInUp animated\" id=res'"+i+"' name='"+res_list[i-1]+"' onclick=\"showdetail(this)\" data-wow-delay=\".5s\">\n" +
                     "\t\t\t\t<div class=\"grid\">\n" +
                     "\t\t\t\t\t<figure class=\"effect-apollo\">\n" +
                     "\t\t\t\t\t\t<a class=\"example-image-link\" data-lightbox=\"example-set\" data-title=\"\">\n" +
@@ -348,7 +348,25 @@
             // return obj
         // }
 	})
-	function showdetail() {
+	function showdetail(obj) {
+	    alert(document.getElementById(obj.id).getAttribute("name"))
+		var res_name = document.getElementById(obj.id).getAttribute("name")
+        // $.ajax({
+        //     dataType: "json",
+        //     type: "GET",
+        //     url: "http://localhost:9006/recommend/hotRestaurantList",
+        //     async:true,
+        //     header:"Access-Control-Allow-Origin：*",
+        //     success: function (data) {
+        //         if (data) {//根据返回值进行跳转
+        //             result = data.restaurantList
+        //             window.location.href = '/restaurant_info.html?list='+result;
+        //         }
+        //         console.log(data.restaurantList);
+        //     }, error: function (data) {
+        //         alert(系统错误);
+        //     }
+        // });
 	    if(username=='')
 			window.location.href='/restaurant_detail.html?res_name=AAA&city=BBB&address=CCC&stars=DDD&imgurl=1'
 		else{
