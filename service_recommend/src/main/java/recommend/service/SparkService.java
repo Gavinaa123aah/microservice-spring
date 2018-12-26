@@ -14,6 +14,7 @@ import org.apache.spark.mllib.recommendation.ALS;
 import scala.Function1;
 import scala.Int;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +52,7 @@ public class SparkService {
     public static void main(String[] args) {
 
     }
-    public static List<String> recommendRestaurantForUser(String user_id) {
+    public static List<String> recommendRestaurantForUser(String user_id) throws IOException {
         userDataSet.createOrReplaceTempView("user");
         reviewDataSet.createOrReplaceTempView("review");
         businessDataSet.createOrReplaceTempView("business");
@@ -59,7 +60,7 @@ public class SparkService {
                 "where review.user_id = user.user_id and review.business_id=business.business_id");
 
         Dataset<Row> users = userDataSet.select("id","user_id","name");
-        Dataset<Row> businesses = businessDataSet.select("id","business_id","name");
+        Dataset<Row> businesses = businessDataSet.select("id","business_id","name","stars");
 
 
         JavaRDD<Row> data = review_list.toJavaRDD();
@@ -82,11 +83,18 @@ public class SparkService {
         user_num = Integer.parseInt(id_list.get(0).get(0).toString());
         List<String> res_list = new ArrayList<>();
         List<String> resBandS_list = new ArrayList<>();
-        Rating[] rec_res = model.recommendProducts(user_num,5);//23132
+        Rating[] rec_res = model.recommendProducts(user_num,10);//23132
+        String review_line = "";
+        String business_line = "";
+
         for(Rating r : rec_res){
             System.out.println(r.user()+","+r.product());
-            List<Row> business_list = businesses.select("name").where("id = "+r.product()).collectAsList();
+            List<Row> business_list = businesses.select("name","business_id","stars").where("id = "+r.product()).collectAsList();
             String business_name = business_list.get(0).get(0).toString();
+
+            review_line+="{\"user_id\":"+r.user()+",\"business_id\":"+r.product()+",\"stars\":"+r.rating()+"},"+'\n';
+            business_line+="{\"id\":"+r.product()+",\"business_id\":\""+business_list.get(0).get(1).toString()+"\""+
+                    ",\"name\":\""+business_name+"\",\"stars\":"+business_list.get(0).get(2)+"},\n";
 
             res_list.add(business_name);
             resBandS_list.add("for username:"+username+
@@ -96,6 +104,21 @@ public class SparkService {
                     " recommend business "+business_name+
                     " recommend stars "+r.rating());
         }
+//        System.out.println(review_line);
+        String review_file ="/Users/dreamhome/Desktop/review_file.json";
+        String business_file = "/Users/dreamhome/Desktop/business_file.json";
+        FileOutputStream fileWriter = new FileOutputStream(review_file);
+        OutputStreamWriter writer = new OutputStreamWriter(fileWriter,"UTF-8");
+//        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(review_file.getName(),true));
+        writer.write(review_line);
+        writer.close();
+
+        fileWriter.close();
+        FileOutputStream fileWriter1 = new FileOutputStream(business_file);
+        OutputStreamWriter writer1 = new OutputStreamWriter(fileWriter1,"UTF-8");
+        writer1.write(business_line);
+        writer1.close();
+
         return res_list;
     }
 

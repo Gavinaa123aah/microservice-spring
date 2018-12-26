@@ -30,7 +30,7 @@ public class SparkService {
     public static Dataset<Row> businessDataSet;
 
 //    public templates String user_path = "/Users/dreamhome/Desktop/learn/云计算/yelp_dataset的副本/yelp_academic_dataset_user.json";
-    public static String business_path = "/Users/dreamhome/Desktop/learn/云计算/yelp_dataset的副本/yelp_academic_dataset_business.json";
+    public static String business_path = "/Users/dreamhome/Desktop/learn/云计算/yelp_dataset的副本/id_business.json";
     static{
         spark = SparkSession.builder().appName("test").master("local[*]").getOrCreate();
 //        userDataSet = spark.read().json(user_path);
@@ -39,11 +39,13 @@ public class SparkService {
     }
 
     public static List<String> recommendHotRestaurant(){
+//        businessDataSet.createOrReplaceTempView("business");
 
-        List<Row> list = businessDataSet.select("business_id","name","stars","city").sort("stars").takeAsList(10);
+        List<Row> list = businessDataSet.select("id","business_id","address","name","stars","city").sort("stars").takeAsList(10);
         List<String> res_list = new ArrayList<>();
         for(int i = 0;i <list.size();i ++){
-            res_list.add(list.get(i).get(1).toString());
+            res_list.add(list.get(i).get(3).toString());
+            System.out.println(list.get(i).get(3).toString());
         }
         return res_list;
     }
